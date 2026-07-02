@@ -32,8 +32,13 @@
     async function loadText() {
         const response = await fetch("https://interactive.jerryly.cn/text");
         const data = await response.json();
-        document.getElementById("output").innerHTML = data.text;
-        document.getElementById("editor").value = data.text;
+        document.getElementById("output").innerHTML = data.posts.map(post => `
+            <div class="entry">
+                <div>${post.text}</div>
+                <small>${post.text}</small>
+            </div>
+        `).join("");
+        document.getElementById("editor").value = "";
     }
     loadText();
     async function onSave() {
