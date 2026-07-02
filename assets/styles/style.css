@@ -47,28 +47,80 @@
 
 #interactive-in-test {
     width: 100%;
-    display: flex;
-    gap: 10px;
+    position: relative;
+    overflow: hidden;
 }
 
 #interactive-in-test #editor {
-    width: 100%;
+    width: calc(100% - 22px);
     height: 100px;
     border-radius: 10px;
+    border: solid 1px #eee;
+    padding: 10px;
+    font-family: "Source Han Serif", Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 16px;
 }
 
 #interactive-in-test button {
-    height: 40px;
-    border-width: 1px;
-    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 60px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: solid 1px black;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+    position: absolute;
+    bottom: 22px;
+    right: 22px;
 }
 
-#output {
+#interactive-delete {
+    width: 30px;
+    height: 30px;
+    padding: 4px 14px;
+    border-radius: 60px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: solid 1px crimson;
+    color: crimson;
+    overflow: hidden;
+}
+
+#interactive-delete .material-symbols-outlined {
+    font-size: 20px;
+}
+
+#interactive-history-expand {
+    display: flex;
+}
+
+.interactive-entry {
+    width: calc(100% - 20px);
+    display: grid;
+    grid-template-columns: 1fr 42px;
+    column-gap: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: rgb(250, 250, 250);
+    padding: 10px;
+    align-items: center;
+}
+
+#interactive-output {
+    width: 100%;
     height: 0;
     overflow: hidden;
 }
 
-#output.show {
+#interactive-output.show {
     height: fit-content;
 }
 

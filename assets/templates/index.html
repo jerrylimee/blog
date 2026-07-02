@@ -1,15 +1,19 @@
 {% extends "post.html" %} {% block content %}
 
 <div class="content-unit">
+    <h2 class="text-n">A place where I write things</h2>
+    <p class="text-n">You can too!</p>
     <div id="interactive-in-test">
-        <textarea id="editor" rows="1"></textarea>
-        <button onClick="onSave()">Save</button>
+        <textarea id="editor" rows="1" placeholder="Write a note here! It can't be empty, though."></textarea>
+        <button onClick="onSave()">
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
     </div>
     <p class="text-n" id="interactive-history-expand">
         <span class="material-symbols-outlined" id="interactive-drop-down-indicator">arrow_right</span>
         Recent Notes
     </p>
-    <div id="output"></div>
+    <div id="interactive-output"></div>
     <p class="text-n">
         Documentations
     </p>
@@ -36,28 +40,49 @@
     async function loadText() {
         const response = await fetch("https://interactive.jerryly.cn/text");
         const data = await response.json();
-        document.getElementById("output").innerHTML = data.posts.map(post => `
-            <div class="entry">
-                <div>${post.text}</div>
-                <small>${post.text}</small>
+        if (data.posts.length === 0) {
+            document.getElementById("interactive-output").innerHTML = "No recent notes";
+        } else {
+            document.getElementById("interactive-output").innerHTML = data.posts.map(post => `
+            <div class="interactive-entry">
+                <div>
+                    <div>${post.text}</div>
+                    <small>${post.time}</small>
+                </div>
+                <button id="interactive-delete" onclick="onDelete('${post.time}')">
+                    <span class="material-symbols-outlined">delete</span>
+                </button>
             </div>
         `).join("");
+        }
         document.getElementById("editor").value = "";
     }
     loadText();
     async function onSave() {
-        const text = document.getElementById("editor").value;
+        const text = document.getElementById("editor").value.trim();
+        if (text.length === 0) {
+            return;
+        } else {
+            await fetch("https://interactive.jerryly.cn/text", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ text }),
+            });
+            loadText();
+        }
+    }
+    async function onDelete(time) {
         await fetch("https://interactive.jerryly.cn/text", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ text }),
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ time }),
         });
         loadText();
     }
     $("#interactive-history-expand").click(() => {
-        $("#output").toggleClass("show");
+        $("#interactive-output").toggleClass("show");
         const indicator = $("#interactive-drop-down-indicator");
         const current = indicator.text().trim();
         indicator.text(current === 'arrow_right' ? 'arrow_drop_down' : 'arrow_right');
