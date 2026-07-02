@@ -2,9 +2,13 @@
 
 <div class="content-unit">
     <div id="interactive-in-test">
-        <textarea id="editor" rows="10"></textarea>
+        <textarea id="editor" rows="1"></textarea>
         <button onClick="onSave()">Save</button>
     </div>
+    <p class="text-n" id="interactive-history-expand">
+        <span class="material-symbols-outlined" id="interactive-drop-down-indicator">arrow_right</span>
+        Recent Notes
+    </p>
     <div id="output"></div>
     <p class="text-n">
         Documentations
@@ -52,6 +56,12 @@
         });
         loadText();
     }
+    $("#interactive-history-expand").click(() => {
+        $("#output").toggleClass("show");
+        const indicator = $("#interactive-drop-down-indicator");
+        const current = indicator.text().trim();
+        indicator.text(current === 'arrow_right' ? 'arrow_drop_down' : 'arrow_right');
+    });
 </script>
 
 {% endblock %}
