@@ -1,8 +1,11 @@
 {% extends "post.html" %} {% block content %}
 
 <div class="content-unit">
-    <h2 class="text-n">Jerry Li's writings and documentations</h2>
-    <h3 class="text-n">李江源的博客和文字收集簿</h3>
+    <div id="interactive-in-test">
+        <textarea id="editor" rows="10"></textarea>
+        <button onClick="onSave()">Save</button>
+    </div>
+    <div id="output"></div>
     <p class="text-n">
         Documentations
     </p>
@@ -24,5 +27,26 @@
     </ul>
     <div class="empty-box"></div>
 </div>
+
+<script>
+    async function loadText() {
+        const response = await fetch("https://interactive.jerryly.cn/text");
+        const data = await response.json();
+        document.getElementById("output").innerHTML = data.text;
+        document.getElementById("editor").value = data.text;
+    }
+    loadText();
+    async function onSave() {
+        const text = document.getElementById("editor").value;
+        await fetch("https://interactive.jerryly.cn/text", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ text }),
+        });
+        loadText();
+    }
+</script>
 
 {% endblock %}
