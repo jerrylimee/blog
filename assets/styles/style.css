@@ -269,6 +269,24 @@ main.active,
     .codehilite {
         background-color: #333;
     }
+
+    #interactive-in-test #editor {
+        border-color: #333;
+    }
+
+    #interactive-in-test button {
+        background-color: #fff;
+        color: #000;
+        border-color: #fff;
+    }
+
+    .interactive-entry {
+        background-color: #333;
+    }
+
+    #interactive-delete {
+        background-color: transparent;
+    }
 }
 
 @media (max-width: 768px) {
