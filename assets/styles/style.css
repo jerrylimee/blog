@@ -31,10 +31,10 @@
 }
 
 @font-face {
-    font-family: 'Playwrite Ireland';
+    font-family: 'Hoefler Text Swash';
     font-weight: normal;
-    font-style: normal;
-    src: url(https://media.jerryly.cn/PlaywriteIE-VariableFont_wght.ttf);
+    font-style: italic;
+    src: url(https://media.jerryly.cn/fonts/HoeflerText-Italic-Swash.ttf);
 }
 
 /* general styles */
@@ -48,14 +48,15 @@
 #interactive-in-test {
     width: 100%;
     position: relative;
-    overflow: hidden;
 }
 
 #interactive-in-test #editor {
     width: calc(100% - 22px);
     height: 100px;
-    border-radius: 10px;
-    border: solid 1px #eee;
+    border-radius: 16px;
+    overflow: hidden;
+    border: none;
+    background-color: #fff;
     padding: 10px;
     font-family: "Source Han Serif", Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 16px;
@@ -70,8 +71,8 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    border: solid 1px black;
-    background-color: black;
+    border: solid 1px #0088cb;
+    background-color: #0088cb;
     color: white;
     overflow: hidden;
     position: absolute;
@@ -109,7 +110,7 @@
     column-gap: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
-    background-color: rgb(250, 250, 250);
+    background-color: #fff;
     padding: 10px;
     align-items: center;
 }
@@ -271,7 +272,7 @@ main.active,
     }
 
     #interactive-in-test #editor {
-        border-color: #333;
+        background-color: #33333372;
     }
 
     #interactive-in-test button {
@@ -289,8 +290,12 @@ main.active,
     }
 }
 
+.content-unit {
+    margin-top: 80px;
+}
+
 @media (max-width: 768px) {
-    #content-unit {
+    .content-unit {
         margin-top: 130px;
     }
 
@@ -302,4 +307,25 @@ main.active,
 .blog-img {
     max-width: 100%;
     border-radius: 10px;
+}
+
+#index-light {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(#f3fbff, white);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
+
+@media (prefers-color-scheme: dark) {
+    #index-light {
+        background-image: linear-gradient(#363534, rgba(0, 0, 0, 0)) !important;
+    }
+}
+
+.index-title {
+    font-family: 'Hoefler Text Swash', 'Source Han Serif', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
 }
