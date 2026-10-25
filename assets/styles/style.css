@@ -169,8 +169,8 @@ a {
     width: 40px;
     height: 40px;
     position: fixed;
-    bottom: 50px;
-    right: 50px;
+    bottom: 30px;
+    right: 30px;
     background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(4px);
     border: solid 1px #eee;
@@ -221,8 +221,8 @@ a {
 
 #post-flip {
     position: fixed;
-    top: 50px;
-    right: 50px;
+    top: 60px;
+    right: 30px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -261,11 +261,12 @@ a {
 main {
     width: 100%;
     text-align: justify;
-    overflow-x: scroll;
-    overflow-y: hidden;
+    overflow: clip;
+    overflow-clip-margin: 10px;
     scrollbar-width: none;
     border-radius: 10px;
     transition: all 0.2s;
+    margin-top: 60px;
 }
 
 main.active,
@@ -384,6 +385,7 @@ main.active,
     font-size: 30px;
     padding-left: 2px;
     overflow: hidden;
+    margin-bottom: 6px;
 }
 
 .text-book .text-book-title {
@@ -403,4 +405,124 @@ main.active,
 
 .text-book-chap {
     margin-bottom: 0;
+}
+
+.text-book-nav-crumbs {
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 40px;
+    background-color: #f2f2f2;
+    width: fit-content;
+    display: flex;
+    gap: 2px;
+    padding: 2px;
+    position: sticky;
+    top: 60px;
+    left: 0;
+}
+
+.text-book-nav-crumbs a {
+    text-decoration: none;
+}
+
+.text-book-crumbs {
+    width: 2.6em;
+    opacity: 0.5;
+    padding: 2px 10px;
+    border-radius: 40px;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.text-book-crumbs:hover {
+    background-color: white;
+    opacity: 1;
+    box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+        0 2px 2px hsl(0deg 0% 0% / 0.075),
+        0 4px 4px hsl(0deg 0% 0% / 0.075),
+        0 8px 8px hsl(0deg 0% 0% / 0.075),
+        0 16px 16px hsl(0deg 0% 0% / 0.075);
+}
+
+@media (max-width: 430px) {
+    .text-book-nav-crumbs {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        border-radius: 16px;
+    }
+}
+
+.text-book-you-are-here {
+    background-color: white;
+    opacity: 0.6;
+    box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+        0 2px 2px hsl(0deg 0% 0% / 0.075),
+        0 4px 4px hsl(0deg 0% 0% / 0.075),
+        0 8px 8px hsl(0deg 0% 0% / 0.075),
+        0 16px 16px hsl(0deg 0% 0% / 0.075);
+}
+
+.text-chapter-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text-chapter-buttons a {
+    text-decoration: none;
+    border-radius: 40px;
+    border: none;
+    padding: 2px;
+    background-color: #f2f2f2;
+    cursor: default;
+}
+
+.text-chapter-buttons a button {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+button.text-book {
+    border-radius: 40px;
+    border: none;
+    padding: 6px 12px;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: transparent;
+    transition: all 0.2s;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+button.text-book:hover {
+    opacity: 1;
+    background-color: white;
+    box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+        0 2px 2px hsl(0deg 0% 0% / 0.075),
+        0 4px 4px hsl(0deg 0% 0% / 0.075),
+        0 8px 8px hsl(0deg 0% 0% / 0.075),
+        0 16px 16px hsl(0deg 0% 0% / 0.075);
+}
+
+@media (prefers-color-scheme: dark) {
+    .text-book-nav-crumbs {
+        background-color: #525252;
+    }
+
+    .text-book-crumbs:hover,
+    button.text-book:hover {
+        background-color: black;
+    }
+
+    .text-book-you-are-here {
+        background-color: black;
+    }
+
+    .text-chapter-buttons a {
+        background-color: #525252;
+    }
 }
