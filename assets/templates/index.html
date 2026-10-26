@@ -39,8 +39,13 @@
         Book(s)
     </p>
     <ul id="list">
-        <li><a href="{{ url_for('serve_post', post_name='dissolve-parasocial-intro') }}">A Beginner's Guide to Properly Dissolving Parasocial Relationships</a></li>
+        <li><a href="{{ url_for('serve_post', post_name='dissolve-parasocial-intro') }}">A Beginner's Guide to Properly
+                Dissolving Parasocial Relationships</a></li>
     </ul>
+    <p class="text-n">
+        Changes
+    </p>
+    <pre id="blog-changes"></pre>
     <div class="empty-box"></div>
 </div>
 
@@ -95,6 +100,9 @@
         const current = indicator.text().trim();
         indicator.text(current === 'arrow_right' ? 'arrow_drop_down' : 'arrow_right');
     });
+
+    fetch("changes.txt").then(r => r.text())
+        .then(t => document.getElementById("blog-changes").textContent = t);
 </script>
 
 {% endblock %}
