@@ -43,9 +43,8 @@
                 Dissolving Parasocial Relationships</a></li>
     </ul>
     <p class="text-n">
-        Changes
+        <a href="{{ url_for('serve_post', post_name='change-log') }}">Change Log</a>
     </p>
-    <pre id="blog-changes"></pre>
     <div class="empty-box"></div>
 </div>
 
@@ -100,9 +99,6 @@
         const current = indicator.text().trim();
         indicator.text(current === 'arrow_right' ? 'arrow_drop_down' : 'arrow_right');
     });
-
-    fetch("changes.txt").then(r => r.text())
-        .then(t => document.getElementById("blog-changes").textContent = t);
 </script>
 
 {% endblock %}

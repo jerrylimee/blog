@@ -1,0 +1,8 @@
+<h2 class="text-n">Changes</h2>
+<pre id="blog-changes"></pre>
+<div class="empty-box"></div>
+
+<script>
+    fetch("changes.txt").then(r => r.text())
+        .then(t => document.getElementById("blog-changes").textContent = t);
+</script>
