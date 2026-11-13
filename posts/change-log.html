@@ -3,6 +3,6 @@
 <div class="empty-box"></div>
 
 <script>
-    fetch("changes.txt").then(r => r.text())
+    fetch("/changes.txt").then(r => r.text())
         .then(t => document.getElementById("blog-changes").textContent = t);
 </script>
